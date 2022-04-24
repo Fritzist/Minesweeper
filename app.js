@@ -59,17 +59,19 @@ function listMinesLeft() {
         boardElement.addEventListener('click', stopProp,{ capture: true } )
         boardElement.addEventListener('contextmenu', stopProp,{ capture: true } )
 
+        winningMessageElement.classList.add('show')
+
     }
 
     if (win) {
 
-        messageText.textContent = "You Win"
+        winningMessageTextElement.textContent = "You Win"
 
     }
 
     if (lose) {
 
-        messageText.textContent = "You Lose"
+        winningMessageTextElement.textContent = "You Lose"
         board.forEach(row => {
             row.forEach(tile => {
 
@@ -86,3 +88,22 @@ function listMinesLeft() {
     e.stopImmediatePropagation()
 
   }
+
+const winningMessageElement = document.getElementById('winningMessage')
+const restartButton = document.getElementById('restartButton')
+const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
+
+restartButton.addEventListener('click', reloadPage)
+
+function reloadPage() {
+
+    window.location = window.location
+    
+}
+
+window.addEventListener("contextmenu", function(e) {
+
+    e.preventDefault()
+    e.stopPropagation()
+
+})
